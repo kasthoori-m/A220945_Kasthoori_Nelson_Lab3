@@ -28,7 +28,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            // Applies the custom Material Design theme (Task 1)
+            // Applies the custom Material Design theme
             EduQuestTheme {
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
                     EduQuestLab3()
@@ -51,10 +51,10 @@ fun EduQuestLab3() {
         modifier = Modifier
             .fillMaxSize()
             .padding(horizontal = 20.dp, vertical = 8.dp) // Adjusted padding
-            .verticalScroll(rememberScrollState()) // <-- THIS MAKES IT SCROLLABLE!
+            .verticalScroll(rememberScrollState()) // THIS MAKES IT SCROLLABLE!
     ) {
 
-        // <-- PUSHES THE HEADER DOWN A BIT -->
+        // PUSHES THE HEADER DOWN A BIT
         Spacer(modifier = Modifier.height(32.dp))
 
         // 1. HEADER (Upgraded to Two-Tone Dashboard Style)
@@ -70,7 +70,7 @@ fun EduQuestLab3() {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Column {
-                    // Text is now white (onPrimary) so it pops against the navy blue!
+                    // Text is now white (onPrimary) so it pops against the navy blue
                     Text(text = "Welcome back,", fontSize = 14.sp, color = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.8f))
                     Text(text = displayName, fontSize = 20.sp, fontWeight = FontWeight.ExtraBold, color = MaterialTheme.colorScheme.onPrimary)
                 }
@@ -91,7 +91,7 @@ fun EduQuestLab3() {
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        // 2. INPUT CARD (Task 2: Using Material Card)
+        // 2. INPUT CARD (Using Material Card)
         Card(
             modifier = Modifier.fillMaxWidth(),
             colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
@@ -101,7 +101,7 @@ fun EduQuestLab3() {
                 Text("Update Profile & Progress", fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary)
                 Spacer(modifier = Modifier.height(12.dp))
 
-                // Inside your Update Profile Card:
+                // Inside the Update Profile Card:
                 OutlinedTextField(
                     value = nameInput,
                     onValueChange = { nameInput = it },
@@ -128,7 +128,7 @@ fun EduQuestLab3() {
                         if (p != null) progressPercentage = (p / 100f).coerceIn(0f, 1f)
                     },
                     modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(16.dp), // Added here!
+                    shape = RoundedCornerShape(16.dp),
                     colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
                 ) {
                     Text("Refresh Dashboard")
@@ -138,7 +138,7 @@ fun EduQuestLab3() {
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        // 3. COURSE PROGRESS SECTION (Fixed "Never Read" Error)
+        // 3. COURSE PROGRESS SECTION
         Text(text = "Course Progress", fontSize = 18.sp, fontWeight = FontWeight.Bold)
         Spacer(modifier = Modifier.height(12.dp))
 
@@ -178,7 +178,7 @@ fun EduQuestLab3() {
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        // 4. EXPLORE QUESTS (Task 3: Animated Cards with Theme Colors)
+        // 4. EXPLORE QUESTS (Animated Cards with Theme Colors)
         Text(text = "Explore Quests (Tap to Expand)", style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.primary)
         Spacer(modifier = Modifier.height(12.dp))
 
@@ -200,7 +200,7 @@ fun EduQuestLab3() {
 
         Spacer(modifier = Modifier.height(12.dp))
 
-        // Row 2 (Restoring all 4 subjects)
+        // Row 2
         Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
             AnimatedSubjectCard(
                 "Computing", "Java", "Learn object-oriented programming and software design.",
@@ -218,7 +218,7 @@ fun EduQuestLab3() {
     }
 }
 
-// TASK 3: EXPANDABLE ANIMATED CARD (With Upgrades 1 & 2)
+// TASK 3: EXPANDABLE ANIMATED CARD
 @Composable
 fun AnimatedSubjectCard(title: String, subtitle: String, details: String, bg: Color, txt: Color, modifier: Modifier) {
     var expanded by remember { mutableStateOf(false) }
@@ -232,17 +232,17 @@ fun AnimatedSubjectCard(title: String, subtitle: String, details: String, bg: Co
                     stiffness = Spring.StiffnessLow
                 )
             ),
-        shape = RoundedCornerShape(24.dp), // Upgrade 1: Bubbly corners
+        shape = RoundedCornerShape(24.dp), // Bubbly corners
         elevation = CardDefaults.cardElevation(
-            defaultElevation = 8.dp, // Upgrade 1: Higher shadow
+            defaultElevation = 8.dp, // Higher shadow
             pressedElevation = 2.dp
         ),
         colors = CardDefaults.cardColors(containerColor = bg)
     ) {
-        // Everything must go inside this ONE Column
+        // Everything go inside this 1 Column
         Column(modifier = Modifier.padding(16.dp)) {
 
-            // Upgrade 2: The Icon and Title Row
+            // The Icon and Title Row
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Icon(
                     painter = painterResource(id = android.R.drawable.ic_menu_sort_by_size),
@@ -256,10 +256,10 @@ fun AnimatedSubjectCard(title: String, subtitle: String, details: String, bg: Co
 
             Spacer(modifier = Modifier.height(4.dp))
 
-            // The Subtitle (Updated to match details exactly)
+            // The Subtitle
             Text(
                 text = subtitle,
-                color = txt, // Removed the .copy(alpha = 0.8f) fade
+                color = txt,
                 fontSize = 14.sp,
                 lineHeight = 16.sp // Added line height to match details
             )
